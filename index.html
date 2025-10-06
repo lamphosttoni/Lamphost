@@ -24,6 +24,21 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 </style>
+<style>
+/* SOLO para los tres enlaces del menú del header */
+#main-nav a {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;        /* cursiva elegante */
+  font-weight: 700;          /* negrita */
+  text-transform: uppercase; /* mayúsculas */
+  letter-spacing: 0.08em;    /* espacio entre letras */
+  font-size: 1rem;           /* tamaño de fuente */
+}
+
+#main-nav a:hover {
+  text-decoration: none;
+}
+</style>
 
 </head>
 <body class="bg-white text-gray-900">
@@ -40,11 +55,12 @@ h1, h2, h3, h4 {
   </div>
 
   <!-- Derecha: Menú -->
-  <nav class="space-x-6 hidden md:flex absolute right-6 top-1/2 -translate-y-1/2">
-    <a href="#inicio" class="hover:text-yellow-500">Inicio</a>
-    <a href="#productos" class="hover:text-yellow-500">Productos</a>
-    <a href="#contacto" class="hover:text-yellow-500">Contacto</a>
-  </nav>
+  <nav id="main-nav" class="space-x-6 hidden md:flex absolute right-6 top-1/2 -translate-y-1/2">
+  <a href="#inicio" class="hover:text-yellow-500">Inicio</a>
+  <a href="#productos" class="hover:text-yellow-500">Productos</a>
+  <a href="#contacto" class="hover:text-yellow-500">Contacto</a>
+</nav>
+
 </header>
 
 

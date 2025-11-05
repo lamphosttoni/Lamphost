@@ -73,51 +73,53 @@ h1, h2, h3, h4 {
     <p class="mt-4 text-lg text-gray-600">Diseño minimalista y elegante para tu espacio.</p>
     <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
 
-  </section>
-
   <!-- PRODUCTOS -->
-  <section id="productos" class="py-20 max-w-6xl mx-auto px-6">
-    <h3 class="text-3xl font-bold text-center mb-12">OUR PRODUCTS</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      <!-- Producto 1 -->
-      <div class="text-center">
-        <img src="images/SUDADERA 2.PNG" alt="Producto 1" class="mx-auto rounded-xl shadow">
-        <h4 class="mt-4 font-semibold text-lg">HOODIE</h4>
-        <p class="text-gray-600 text-sm">Breve descripción del producto.</p>
+<section id="productos" class="py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12">Nuestros productos</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      
+      <!-- PRODUCTO 1 -->
+      <div class="text-center product-card" data-id="p1" data-name="Lámpara Alpine" data-price="89.00">
+        <img src="images/producto1.jpg" alt="Lámpara Alpine" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Alpine</h4>
+        <p class="text-gray-600 text-sm">Inspirada en la calma de las montañas. Iluminación cálida y natural.</p>
+        <p class="mt-2 font-bold">€89</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 2 -->
+      <div class="text-center product-card" data-id="p2" data-name="Lámpara Urban" data-price="119.00">
+        <img src="images/producto2.jpg" alt="Lámpara Urban" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Urban</h4>
+        <p class="text-gray-600 text-sm">Diseño contemporáneo para espacios modernos. Minimalista y versátil.</p>
+        <p class="mt-2 font-bold">€119</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 3 -->
+      <div class="text-center product-card" data-id="p3" data-name="Lámpara Dune" data-price="99.00">
+        <img src="images/producto3.jpg" alt="Lámpara Dune" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Dune</h4>
+        <p class="text-gray-600 text-sm">Texturas inspiradas en el desierto. Crea ambientes cálidos y envolventes.</p>
         <p class="mt-2 font-bold">€99</p>
-        <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
-
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
       </div>
 
-      <!-- Producto 2 -->
-      <div class="text-center">
-        <img src="images/cap.PNG" alt="Producto 2" class="mx-auto rounded-xl shadow">
-        <h4 class="mt-4 font-semibold text-lg">CAP</h4>
-        <p class="text-gray-600 text-sm">Breve descripción del producto.</p>
-        <p class="mt-2 font-bold">€129</p>
-        <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
-
+      <!-- PRODUCTO 4 -->
+      <div class="text-center product-card" data-id="p4" data-name="Lámpara Nordic" data-price="139.00">
+        <img src="images/producto4.jpg" alt="Lámpara Nordic" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Nordic</h4>
+        <p class="text-gray-600 text-sm">Líneas limpias y materiales naturales. Inspiración escandinava.</p>
+        <p class="mt-2 font-bold">€139</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
       </div>
 
-      <!-- Producto 3 -->
-      <div class="text-center">
-        <img src="images/bandana.PNG" alt="Producto 3" class="mx-auto rounded-xl shadow">
-        <h4 class="mt-4 font-semibold text-lg">BANDANA</h4>
-        <p class="text-gray-600 text-sm">Breve descripción del producto.</p>
-        <p class="mt-2 font-bold">€149</p>
-        <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
-      </div>
-
-      <!-- Producto 4 -->
-      <div class="text-center">
-        <img src="images/shirt.PNG" alt="Producto 4" class="mx-auto rounded-xl shadow">
-        <h4 class="mt-4 font-semibold text-lg">SHIRT</h4>
-        <p class="text-gray-600 text-sm">Breve descripción del producto.</p>
-        <p class="mt-2 font-bold">€179</p>
-        <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- SOBRE LAMPHOST -->
   <section class="py-20 bg-gray-50 px-6">

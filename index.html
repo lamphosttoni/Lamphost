@@ -39,6 +39,27 @@ h1, h2, h3, h4 {
   text-decoration: none;
 }
 </style>
+<style>
+/* === Animación Premium del icono del carrito === */
+@keyframes cart-bounce-premium {
+  0%   { transform: translateY(0) scale(1); }
+  25%  { transform: translateY(-6px) scale(1.08); }
+  50%  { transform: translateY(3px) scale(0.95); }
+  75%  { transform: translateY(-2px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes cart-glow {
+  0%   { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  40%  { box-shadow: 0 0 10px #1C1C1C; }
+  100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+
+/* Cuando se añade al carrito */
+.cart-bounce-premium {
+  animation: cart-bounce-premium 0.6s cubic-bezier(.4,0,.2,1), cart-glow 0.8s ease-out;
+}
+</style>
 
 </head>
 <body class="bg-white text-gray-900">
@@ -166,7 +187,7 @@ h1, h2, h3, h4 {
 
   <div class="p-6 flex items-center justify-between border-b">
     <h3 class="text-xl font-semibold">Carrito</h3>
-    <button id="cart-close" aria-label="Cerrar carrito" class="text-gray-600">Cerrar</button>
+    <button id="cart-close" aria-label="Cerrar carrito" class="text-gray-600">Close</button>
   </div>
 
   <div id="cart-items" class="p-6 space-y-4 overflow-y-auto" style="max-height: calc(100% - 240px);">
@@ -255,17 +276,24 @@ h1, h2, h3, h4 {
   };
 
   // --- Añadir producto ---
-  function addToCartFromElement(el) {
-    const card = el.closest('.product-card');
-    if (!card) return;
-    const id = card.dataset.id;
-    const name = card.dataset.name;
-    const price = parseFloat(card.dataset.price);
-    if (!cart[id]) cart[id] = { id, name, price, qty: 0 };
-    cart[id].qty++;
-    renderCart();
-    openCart();
-  }
+  // --- Añadir producto ---
+function addToCartFromElement(el) {
+  const card = el.closest('.product-card');
+  if (!card) return;
+  const id = card.dataset.id;
+  const name = card.dataset.name;
+  const price = parseFloat(card.dataset.price);
+  if (!cart[id]) cart[id] = { id, name, price, qty: 0 };
+  cart[id].qty++;
+  renderCart();
+
+  // ✨ Animación premium del icono del carrito
+  cartToggle.classList.add('cart-bounce-premium');
+  setTimeout(() => cartToggle.classList.remove('cart-bounce-premium'), 800);
+
+  openCart();
+}
+
 
   // --- Abrir/cerrar carrito ---
   const openCart = () => (cartPanel.style.transform = 'translateX(0)');

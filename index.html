@@ -182,6 +182,133 @@ h1, h2, h3, h4 {
     <p class="text-xs text-gray-500 mt-3">Checkout no configurado — por ahora solo muestra el resumen del pedido.</p>
   </div>
 </aside>
+<!-- SCRIPT DEL CARRITO -->
+<script>
+(function () {
+  // --- Helpers ---
+  const formatEUR = n => '€' + Number(n).toFixed(2);
+
+  const STORAGE_KEY = 'lamphost_cart';
+
+  const loadCart = () => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  };
+
+  const saveCart = cart => localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+
+  // --- Estado inicial ---
+  let cart = loadCart();
+
+  // --- Referencias del DOM ---
+  const cartToggle = document.getElementById('cart-toggle');
+  const cartPanel = document.getElementById('cart-panel');
+  const cartClose = document.getElementById('cart-close');
+  const cartCount = document.getElementById('cart-count');
+  const cartItemsNode = document.getElementById('cart-items');
+  const cartTotalNode = document.getElementById('cart-total');
+  const checkoutBtn = document.getElementById('checkout-btn');
+
+  // --- Actualizar contador ---
+  const updateCartCount = () => {
+    const qty = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+    cartCount.textContent = qty;
+  };
+
+  // --- Calcular total ---
+  const calculateTotal = () => {
+    const total = Object.values(cart).reduce((sum, item) => sum + item.price * item.qty, 0);
+    return total.toFixed(2);
+  };
+
+  // --- Mostrar carrito ---
+  const renderCart = () => {
+    cartItemsNode.innerHTML = '';
+    if (Object.keys(cart).length === 0) {
+      cartItemsNode.innerHTML = '<p class="text-gray-500">Tu carrito está vacío.</p>';
+    } else {
+      Object.values(cart).forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between';
+        row.innerHTML = `
+          <div>
+            <div class="font-medium">${item.name}</div>
+            <div class="text-sm text-gray-500">${formatEUR(item.price)}</div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button data-action="dec" data-id="${item.id}" class="px-2 border rounded">-</button>
+            <span>${item.qty}</span>
+            <button data-action="inc" data-id="${item.id}" class="px-2 border rounded">+</button>
+            <button data-action="remove" data-id="${item.id}" class="text-red-500 text-sm">Eliminar</button>
+          </div>
+        `;
+        cartItemsNode.appendChild(row);
+      });
+    }
+    cartTotalNode.textContent = formatEUR(calculateTotal());
+    updateCartCount();
+    saveCart(cart);
+  };
+
+  // --- Añadir producto ---
+  function addToCartFromElement(el) {
+    const card = el.closest('.product-card');
+    if (!card) return;
+    const id = card.dataset.id;
+    const name = card.dataset.name;
+    const price = parseFloat(card.dataset.price);
+    if (!cart[id]) cart[id] = { id, name, price, qty: 0 };
+    cart[id].qty++;
+    renderCart();
+    openCart();
+  }
+
+  // --- Abrir/cerrar carrito ---
+  const openCart = () => (cartPanel.style.transform = 'translateX(0)');
+  const closeCart = () => (cartPanel.style.transform = '');
+
+  // --- Escuchar clicks ---
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.add-to-cart');
+    if (btn) {
+      e.preventDefault();
+      addToCartFromElement(btn);
+    }
+  });
+
+  cartToggle.addEventListener('click', openCart);
+  cartClose.addEventListener('click', closeCart);
+  cartItemsNode.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const action = btn.dataset.action;
+    if (action === 'inc') cart[id].qty++;
+    if (action === 'dec') cart[id].qty = Math.max(1, cart[id].qty - 1);
+    if (action === 'remove') delete cart[id];
+    renderCart();
+  });
+
+  checkoutBtn.addEventListener('click', () => {
+    if (Object.keys(cart).length === 0) {
+      alert('Tu carrito está vacío.');
+      return;
+    }
+    const resumen = Object.values(cart)
+      .map(i => `${i.name} x${i.qty} — ${formatEUR(i.price * i.qty)}`)
+      .join('\n');
+    const total = formatEUR(calculateTotal());
+    alert(`Resumen del pedido:\n\n${resumen}\n\nTotal: ${total}`);
+  });
+
+  // --- Iniciar ---
+  renderCart();
+})();
+</script>
 
 </body>
 </html>

@@ -59,6 +59,40 @@ h1, h2, h3, h4 {
 .cart-bounce-premium {
   animation: cart-bounce-premium 0.6s cubic-bezier(.4,0,.2,1), cart-glow 0.8s ease-out;
 }
+
+</style>
+<style>
+/* === Estilo editorial para productos === */
+
+/* Contenedor del producto */
+.product-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Imagen del producto */
+.product-card img {
+  transition: transform 0.5s ease;
+}
+
+/* Efecto al pasar el ratón */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Transición suave en el botón */
+.product-card button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Al pasar el ratón por el botón */
+.product-card button:hover {
+  transform: scale(1.05);
+}
 </style>
 
 </head>

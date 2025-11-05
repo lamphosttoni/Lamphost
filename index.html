@@ -275,8 +275,7 @@ h1, h2, h3, h4 {
     saveCart(cart);
   };
 
-  // --- Añadir producto ---
-  // --- Añadir producto ---
+ // --- Añadir producto ---
 function addToCartFromElement(el) {
   const card = el.closest('.product-card');
   if (!card) return;
@@ -291,8 +290,10 @@ function addToCartFromElement(el) {
   cartToggle.classList.add('cart-bounce-premium');
   setTimeout(() => {
     cartToggle.classList.remove('cart-bounce-premium');
-    openCart(); // 🔹 abrimos el carrito justo después de la animación
+    openCart(); // abrimos después de la animación
   }, 800);
+}
+
 
 
 

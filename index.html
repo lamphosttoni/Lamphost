@@ -289,10 +289,11 @@ function addToCartFromElement(el) {
 
   // ✨ Animación premium del icono del carrito
   cartToggle.classList.add('cart-bounce-premium');
-  setTimeout(() => cartToggle.classList.remove('cart-bounce-premium'), 800);
+  setTimeout(() => {
+    cartToggle.classList.remove('cart-bounce-premium');
+    openCart(); // 🔹 abrimos el carrito justo después de la animación
+  }, 800);
 
-  openCart();
-}
 
 
   // --- Abrir/cerrar carrito ---

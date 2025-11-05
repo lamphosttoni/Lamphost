@@ -150,5 +150,38 @@ h1, h2, h3, h4 {
     <p class="mt-6 text-gray-400">Contact: lamphostcollective@gmail.com</p>
     <p class="mt-2 text-gray-500">© 2025 Lamphost. Todos los derechos reservados.</p>
   </footer>
+  <!-- CARRITO -->
+<!-- Icono del carrito fijo en la esquina superior derecha -->
+<button id="cart-toggle" aria-label="Abrir carrito"
+  class="fixed right-4 top-4 z-50 bg-white border rounded-full p-3 shadow flex items-center">
+  <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1 5h13M7 13L5.4 5M16 21a1 1 0 11-2 0 1 1 0 012 0zm-6 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+  </svg>
+  <span id="cart-count" class="text-sm font-medium">0</span>
+</button>
+
+<!-- Panel del carrito (aparece desde la derecha) -->
+<aside id="cart-panel"
+  class="fixed right-0 top-0 h-full w-96 bg-white shadow-lg z-40 transform translate-x-full transition-transform">
+  <div class="p-6 flex items-center justify-between border-b">
+    <h3 class="text-xl font-semibold">Carrito</h3>
+    <button id="cart-close" aria-label="Cerrar carrito" class="text-gray-600">Cerrar</button>
+  </div>
+
+  <div id="cart-items" class="p-6 space-y-4 overflow-y-auto" style="max-height: calc(100% - 240px);">
+    <!-- Los productos se añadirán aquí automáticamente con JavaScript -->
+  </div>
+
+  <div class="p-6 border-t">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-medium">Total</span>
+      <span id="cart-total" class="font-bold text-lg">€0.00</span>
+    </div>
+    <button id="checkout-btn" class="w-full btn-lamphost py-3">Checkout</button>
+    <p class="text-xs text-gray-500 mt-3">Checkout no configurado — por ahora solo muestra el resumen del pedido.</p>
+  </div>
+</aside>
+
 </body>
 </html>

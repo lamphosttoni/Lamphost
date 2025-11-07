@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamphost</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: EB Garamond (bold italic) + Montserrat (regular) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
+<style>
+/* Fuente principal del cuerpo */
+body {
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400; /* regular */
+}
+
+/* Encabezados: EB Garamond bold italic */
+h1, h2, h3, h4 {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+</style>
+<style>
+/* SOLO para los tres enlaces del menú del header */
+#main-nav a {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;        /* cursiva elegante */
+  font-weight: 700;          /* negrita */
+  text-transform: uppercase; /* mayúsculas */
+  letter-spacing: 0.08em;    /* espacio entre letras */
+  font-size: 1rem;           /* tamaño de fuente */
+}
+
+#main-nav a:hover {
+  text-decoration: none;
+}
+</style>
+<style>
+/* === Animación Premium del icono del carrito === */
+@keyframes cart-bounce-premium {
+  0%   { transform: translateY(0) scale(1); }
+  25%  { transform: translateY(-6px) scale(1.08); }
+  50%  { transform: translateY(3px) scale(0.95); }
+  75%  { transform: translateY(-2px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes cart-glow {
+  0%   { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  40%  { box-shadow: 0 0 10px #1C1C1C; }
+  100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+
+/* Cuando se añade al carrito */
+.cart-bounce-premium {
+  animation: cart-bounce-premium 0.6s cubic-bezier(.4,0,.2,1), cart-glow 0.8s ease-out;
+}
+
+</style>
+<style>
+/* === Estilo editorial para productos === */
+
+/* Contenedor del producto */
+.product-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Imagen del producto */
+.product-card img {
+  transition: transform 0.5s ease;
+}
+
+/* Efecto al pasar el ratón */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Transición suave en el botón */
+.product-card button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Al pasar el ratón por el botón */
+.product-card button:hover {
+  transform: scale(1.05);
+}
+</style>
+
+</head>
+<body class="bg-white text-gray-900">
+  <!-- HEADER -->
+<header class="flex justify-between items-center p-6 shadow-md relative">
+  <!-- Izquierda: Texto Lamphost -->
+  <div class="absolute left-6 top-1/2 -translate-y-1/2">
+    <h1 class="text-2xl font-bold">LAMPHOST</h1>
+  </div>
+
+  <!-- Centro: Logo -->
+  <div class="flex justify-center w-full">
+    <img src="images/logo.png" alt="Logo Lamphost" class="h-16 w-auto">
+  </div>
+
+  <!-- Derecha: Menú -->
+  <nav id="main-nav" class="space-x-6 hidden md:flex absolute right-6 top-1/2 -translate-y-1/2">
+  <a href="#inicio" class="hover:text-yellow-500">Inicio</a>
+  <a href="#productos" class="hover:text-yellow-500">Productos</a>
+  <a href="#contacto" class="hover:text-yellow-500">Contacto</a>
+</nav>
+
+</header>
+
+
+
+
+  <!-- HERO -->
+  <section id="inicio" class="text-center py-20 bg-gray-50">
+    <img src="images/hero.png" alt="Foto principal Snow">
+    <h2 class="text-4xl font-bold mt-6">RIDE THE LIGHT</h2>
+    <p class="mt-4 text-lg text-gray-600">Diseño minimalista y elegante para tu espacio.</p>
+    <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
+
+  <!-- PRODUCTOS -->
+<section id="productos" class="py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12">Nuestros productos</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      
+      <!-- PRODUCTO 1 -->
+      <div class="text-center product-card" data-id="p1" data-name="Lámpara Alpine" data-price="89.00">
+        <img src="images/producto1.jpg" alt="Lámpara Alpine" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Alpine</h4>
+        <p class="text-gray-600 text-sm">Inspirada en la calma de las montañas. Iluminación cálida y natural.</p>
+        <p class="mt-2 font-bold">€89</p>
+        <select class="mt-3 border rounded px-3 py-1 text-sm text-gray-700 talla-select">
+  <option value="">Seleccionar talla</option>
+  <option value="M">M</option>
+  <option value="L">L</option>
+  <option value="XL">XL</option>
+  <option value="XXL">XXL</option>
+</select>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 2 -->
+      <div class="text-center product-card" data-id="p2" data-name="Lámpara Urban" data-price="119.00">
+        <img src="images/producto2.jpg" alt="Lámpara Urban" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Urban</h4>
+        <p class="text-gray-600 text-sm">Diseño contemporáneo para espacios modernos. Minimalista y versátil.</p>
+        <p class="mt-2 font-bold">€119</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 3 -->
+      <div class="text-center product-card" data-id="p3" data-name="Lámpara Dune" data-price="99.00">
+        <img src="images/producto3.jpg" alt="Lámpara Dune" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Dune</h4>
+        <p class="text-gray-600 text-sm">Texturas inspiradas en el desierto. Crea ambientes cálidos y envolventes.</p>
+        <p class="mt-2 font-bold">€99</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 4 -->
+      <div class="text-center product-card" data-id="p4" data-name="Lámpara Nordic" data-price="139.00">
+        <img src="images/producto4.jpg" alt="Lámpara Nordic" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Nordic</h4>
+        <p class="text-gray-600 text-sm">Líneas limpias y materiales naturales. Inspiración escandinava.</p>
+        <p class="mt-2 font-bold">€139</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 5 -->
+      <div class="text-center product-card" data-id="p5" data-name="Lámpara Atelier" data-price="159.00">
+        <img src="images/producto5.jpg" alt="Lámpara Atelier" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Atelier</h4>
+        <p class="text-gray-600 text-sm">Diseño artesanal con materiales de primera calidad.</p>
+        <p class="mt-2 font-bold">€159</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 6 -->
+      <div class="text-center product-card" data-id="p6" data-name="Lámpara Loft" data-price="109.00">
+        <img src="images/producto6.jpg" alt="Lámpara Loft" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Loft</h4>
+        <p class="text-gray-600 text-sm">Estilo industrial con acabados metálicos elegantes.</p>
+        <p class="mt-2 font-bold">€109</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 7 -->
+      <div class="text-center product-card" data-id="p7" data-name="Lámpara Terra" data-price="129.00">
+        <img src="images/producto7.jpg" alt="Lámpara Terra" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Terra</h4>
+        <p class="text-gray-600 text-sm">Inspiración orgánica con tonos tierra y texturas naturales.</p>
+        <p class="mt-2 font-bold">€129</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+      <!-- PRODUCTO 8 -->
+      <div class="text-center product-card" data-id="p8" data-name="Lámpara Zenith" data-price="179.00">
+        <img src="images/producto8.jpg" alt="Lámpara Zenith" class="mx-auto rounded-xl shadow">
+        <h4 class="mt-4 font-semibold text-lg">Lámpara Zenith</h4>
+        <p class="text-gray-600 text-sm">Diseño icónico con una luz suave y envolvente.</p>
+        <p class="mt-2 font-bold">€179</p>
+        <button type="button" class="mt-4 inline-block btn-lamphost add-to-cart px-4 py-2 rounded-full">Comprar</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- SOBRE LAMPHOST -->
+  <section class="py-20 bg-gray-50 px-6">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h3 class="text-3xl font-bold mb-4">ABOUT LAMPHOST</h3>
+        <p class="text-gray-700 leading-relaxed">
+          En Lamphost creemos en la luz como una forma de expresión. Nuestras piezas combinan diseño minimalista con materiales de calidad para transformar cualquier espacio.
+        </p>
+      </div>
+      <img src="images/tomi.png" alt="Sobre Lamphost" class="rounded-2xl shadow-lg">
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="text-center py-20">
+    <h3 class="text-3xl font-bold mb-6">DESCUBRE LA COLECCIÓN LAMPHOST</h3>
+    <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition">Ver productos</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contacto" class="bg-gray-900 text-white py-8 text-center">
+    <p>Follow us in social media</p>
+    <div class="flex justify-center space-x-6 mt-4">
+      <a href="https://www.instagram.com/lamphost" target="_blank" class="hover:text-yellow-500">Instagram</a>
+      <a href="https://www.tiktok.com/@lamphost" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-500">TikTok</a>
+    </div>
+    <p class="mt-6 text-gray-400">Contact: lamphostcollective@gmail.com</p>
+    <p class="mt-2 text-gray-500">© 2025 Lamphost. Todos los derechos reservados.</p>
+  </footer>
+  <!-- CARRITO -->
+<!-- Icono del carrito fijo en la esquina superior derecha -->
+<button id="cart-toggle" aria-label="Abrir carrito"
+  class="fixed right-4 top-4 z-50 bg-white border rounded-full p-3 shadow flex items-center">
+  <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1 5h13M7 13L5.4 5M16 21a1 1 0 11-2 0 1 1 0 012 0zm-6 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+  </svg>
+  <span id="cart-count" class="text-sm font-medium">0</span>
+</button>
+
+<!-- Panel del carrito (aparece desde la derecha) -->
+<aside id="cart-panel" class="fixed right-0 top-0 h-full w-96 bg-white shadow-lg z-50 transform translate-x-full transition-transform">
+
+  <div class="p-6 flex items-center justify-between border-b">
+    <h3 class="text-xl font-semibold">Carrito</h3>
+    <button id="cart-close" aria-label="Cerrar carrito" class="text-gray-600">Close</button>
+  </div>
+
+  <div id="cart-items" class="p-6 space-y-4 overflow-y-auto" style="max-height: calc(100% - 240px);">
+    <!-- Los productos se añadirán aquí automáticamente con JavaScript -->
+  </div>
+
+  <div class="p-6 border-t">
+    <div class="flex justify-between items-center mb-4">
+      <span class="font-medium">Total</span>
+      <span id="cart-total" class="font-bold text-lg">€0.00</span>
+    </div>
+    <button id="checkout-btn" class="w-full btn-lamphost py-3">Checkout</button>
+    <p class="text-xs text-gray-500 mt-3">Checkout no configurado — por ahora solo muestra el resumen del pedido.</p>
+  </div>
+</aside>
+<!-- SCRIPT DEL CARRITO -->
+<script>
+(function () {
+  // --- Helpers ---
+  const formatEUR = n => '€' + Number(n).toFixed(2);
+
+  const STORAGE_KEY = 'lamphost_cart';
+
+  const loadCart = () => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  };
+
+  const saveCart = cart => localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+
+  // --- Estado inicial ---
+  let cart = loadCart();
+
+  // --- Referencias del DOM ---
+  const cartToggle = document.getElementById('cart-toggle');
+  const cartPanel = document.getElementById('cart-panel');
+  const cartClose = document.getElementById('cart-close');
+  const cartCount = document.getElementById('cart-count');
+  const cartItemsNode = document.getElementById('cart-items');
+  const cartTotalNode = document.getElementById('cart-total');
+  const checkoutBtn = document.getElementById('checkout-btn');
+
+  // --- Actualizar contador ---
+  const updateCartCount = () => {
+    const qty = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+    cartCount.textContent = qty;
+  };
+
+  // --- Calcular total ---
+  const calculateTotal = () => {
+    const total = Object.values(cart).reduce((sum, item) => sum + item.price * item.qty, 0);
+    return total.toFixed(2);
+  };
+
+  // --- Mostrar carrito ---
+  const renderCart = () => {
+    cartItemsNode.innerHTML = '';
+    if (Object.keys(cart).length === 0) {
+      cartItemsNode.innerHTML = '<p class="text-gray-500">Tu carrito está vacío.</p>';
+    } else {
+      Object.values(cart).forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between';
+        row.innerHTML = `
+          <div>
+            <div class="font-medium">${item.name}</div>
+            <div class="text-sm text-gray-500">${formatEUR(item.price)}</div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button data-action="dec" data-id="${item.id}" class="px-2 border rounded">-</button>
+            <span>${item.qty}</span>
+            <button data-action="inc" data-id="${item.id}" class="px-2 border rounded">+</button>
+            <button data-action="remove" data-id="${item.id}" class="text-red-500 text-sm">Eliminar</button>
+          </div>
+        `;
+        cartItemsNode.appendChild(row);
+      });
+    }
+    cartTotalNode.textContent = formatEUR(calculateTotal());
+    updateCartCount();
+    saveCart(cart);
+  };
+
+ // --- Añadir producto ---
+function addToCartFromElement(el) {
+  const card = el.closest('.product-card');
+  if (!card) return;
+  const id = card.dataset.id;
+  const name = card.dataset.name;
+  const price = parseFloat(card.dataset.price);
+  if (!cart[id]) cart[id] = { id, name, price, qty: 0 };
+  cart[id].qty++;
+  renderCart();
+
+  // ✨ Animación premium del icono del carrito
+  cartToggle.classList.add('cart-bounce-premium');
+  setTimeout(() => {
+    cartToggle.classList.remove('cart-bounce-premium');
+    openCart(); // abrimos después de la animación
+  }, 800);
+}
+
+
+
+
+  // --- Abrir/cerrar carrito ---
+  const openCart = () => (cartPanel.style.transform = 'translateX(0)');
+  const closeCart = () => (cartPanel.style.transform = '');
+
+  // --- Escuchar clicks ---
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.add-to-cart');
+    if (btn) {
+      e.preventDefault();
+      addToCartFromElement(btn);
+    }
+  });
+
+  cartToggle.addEventListener('click', openCart);
+  cartClose.addEventListener('click', closeCart);
+  cartItemsNode.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const action = btn.dataset.action;
+    if (action === 'inc') cart[id].qty++;
+    if (action === 'dec') cart[id].qty = Math.max(1, cart[id].qty - 1);
+    if (action === 'remove') delete cart[id];
+    renderCart();
+  });
+
+  checkoutBtn.addEventListener('click', () => {
+    if (Object.keys(cart).length === 0) {
+      alert('Tu carrito está vacío.');
+      return;
+    }
+    const resumen = Object.values(cart)
+      .map(i => `${i.name} x${i.qty} — ${formatEUR(i.price * i.qty)}`)
+      .join('\n');
+    const total = formatEUR(calculateTotal());
+    alert(`Resumen del pedido:\n\n${resumen}\n\nTotal: ${total}`);
+  });
+
+  // --- Iniciar ---
+  renderCart();
+})();
+</script>
+
+</body>
+</html>

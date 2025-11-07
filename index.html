@@ -115,6 +115,14 @@ h1, h2, h3, h4 {
   <a href="#productos" class="hover:text-yellow-500">Productos</a>
   <a href="#contacto" class="hover:text-yellow-500">Contacto</a>
 </nav>
+<!-- Selector de idioma -->
+<div class="absolute right-6 top-[80px] md:top-[90px]">
+  <select id="language-switcher" class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400">
+    <option value="es">🇪🇸 ES</option>
+    <option value="en">🇬🇧 EN</option>
+  </select>
+</div>
+
 
 </header>
 
@@ -491,6 +499,50 @@ function addToCartFromElement(el) {
   // --- Iniciar ---
   renderCart();
 })();
+// === SISTEMA DE TRADUCCIÓN ===
+const translations = {
+  es: {
+    "Inicio": "Inicio",
+    "Productos": "Productos",
+    "Contacto": "Contacto",
+    "Nuestros productos": "Nuestros productos",
+    "Comprar": "Comprar",
+    "Carrito": "Carrito",
+    "Total": "Total",
+    "Checkout": "Checkout",
+    "Síguenos en redes sociales": "Síguenos en redes sociales"
+  },
+  en: {
+    "Inicio": "Home",
+    "Productos": "Products",
+    "Contacto": "Contact",
+    "Nuestros productos": "Our Products",
+    "Comprar": "Buy",
+    "Carrito": "Cart",
+    "Total": "Total",
+    "Checkout": "Checkout",
+    "Síguenos en redes sociales": "Follow us on social media"
+  }
+};
+
+// Detectar cambio de idioma
+const langSelect = document.getElementById('language-switcher');
+if (langSelect) {
+  langSelect.addEventListener('change', e => {
+    const lang = e.target.value;
+    translatePage(lang);
+  });
+}
+
+function translatePage(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+  document.querySelectorAll('body *').forEach(el => {
+    const txt = el.textContent?.trim();
+    if (dict[txt]) el.textContent = dict[txt];
+  });
+}
+
 </script>
 
 </body>

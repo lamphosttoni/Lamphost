@@ -361,20 +361,42 @@ h1, h2, h3, h4 {
 function addToCartFromElement(el) {
   const card = el.closest('.product-card');
   if (!card) return;
+
+  // Tomar los datos del producto
   const id = card.dataset.id;
   const name = card.dataset.name;
   const price = parseFloat(card.dataset.price);
-  if (!cart[id]) cart[id] = { id, name, price, qty: 0 };
-  cart[id].qty++;
+
+  // Obtener talla seleccionada
+  const tallaSelect = card.querySelector('.talla-select');
+  const talla = tallaSelect ? tallaSelect.value : '';
+
+  if (!talla) {
+    alert('Por favor, selecciona una talla antes de añadir al carrito.');
+    return;
+  }
+
+  // Identificador único combinando producto y talla
+  const uniqueId = id + '-' + talla;
+
+  // Si no existe en el carrito, crear entrada
+  if (!cart[uniqueId]) {
+    cart[uniqueId] = { id: uniqueId, name: `${name} (Talla ${talla})`, price, qty: 0 };
+  }
+
+  // Sumar cantidad
+  cart[uniqueId].qty++;
+
   renderCart();
 
   // ✨ Animación premium del icono del carrito
   cartToggle.classList.add('cart-bounce-premium');
   setTimeout(() => {
     cartToggle.classList.remove('cart-bounce-premium');
-    openCart(); // abrimos después de la animación
+    openCart();
   }, 800);
 }
+
 
 
 

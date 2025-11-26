@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamphost</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: EB Garamond (bold italic) + Montserrat (regular) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
+<style>
+/* Fuente principal del cuerpo */
+body {
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400; /* regular */
+}
+
+/* Encabezados: EB Garamond bold italic */
+h1, h2, h3, h4 {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+button[type="submit"] {
+  width: 100%;
+  background: #000000;
+  color: white;
+  font-weight: bold;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #1f2937;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  transform: scale(1.05);
+}
+.carousel {
+  position: relative;
+}
+
+.carousel-images {
+  display: flex;
+}
+
+.carousel-images img {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.hero-img-wrapper {
+  width: 100%;
+  height: 68vh;      /* AJUSTA: 40vh, 50vh, 60vh según lo que quieras */
+  overflow: hidden;
+}
+
+.hero-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; 
+}
+
+
+</style>
+<style>
+/* SOLO para los tres enlaces del menú del header */
+#main-nav a {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;        /* cursiva elegante */
+  font-weight: 700;          /* negrita */
+  text-transform: uppercase; /* mayúsculas */
+  letter-spacing: 0.08em;    /* espacio entre letras */
+  font-size: 1rem;           /* tamaño de fuente */
+}
+
+#main-nav a:hover {
+  text-decoration: none;
+}
+</style>
+
+<style>
+
+/* Contenedor del producto */
+.product-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Imagen del producto */
+.product-card img {
+  transition: transform 0.5s ease;
+}
+
+/* Efecto al pasar el ratón */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Transición suave en el botón */
+.product-card button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Al pasar el ratón por el botón */
+.product-card button:hover {
+  transform: scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body class="bg-white text-gray-900">
+  <!-- HEADER -->
+<header class="flex justify-between items-center p-6 shadow-md relative">
+  <!-- Izquierda: Texto Lamphost -->
+  <div class="absolute left-6 top-1/2 -translate-y-1/2">
+    <h1 class="text-2xl font-bold">LAMPHOST</h1>
+  </div>
+
+  <!-- Centro: Logo -->
+  <div class="flex justify-center w-full">
+    <img src="images/logo.png" alt="Logo Lamphost" class="h-16 w-auto">
+  </div>
+
+  <!-- Derecha: Menú -->
+  <nav id="main-nav" class="space-x-6 hidden md:flex absolute right-6 top-1/2 -translate-y-1/2">
+  <a href="#inicio" class="hover:text-yellow-500" data-translate="nav.inicio">Inicio</a>
+  <a href="#productos" class="hover:text-yellow-500" data-translate="nav.productos">Productos</a>
+  <a href="#contacto" class="hover:text-yellow-500" data-translate="nav.contacto">Contacto</a>
+</nav>
+<!-- Selector de idioma -->
+<div class="absolute right-6 top-[80px] md:top-[90px]">
+  <select id="language-switcher" class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400">
+    <option value="es">🇪🇸 ES</option>
+    <option value="en">🇬🇧 EN</option>
+  </select>
+</div>
+
+
+</header>
+
+
+
+
+  <!-- HERO -->
+ <section id="inicio" class="text-center bg-gray-50">
+  <div class="hero-img-wrapper">
+    <img src="images/GRUPO.jpg" alt="Foto principal Snow">
+  </div>
+  <h2 class="text-4xl font-bold mt-4" data-translate="hero.title">RIDE THE LIGHT</h2>
+</section>
+
+    
+ <!-- Early Access - Solo bloquea productos -->
+<div id="early-access-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; backdrop-filter:blur(10px);">
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; background:white; padding:40px; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <h2 style="font-family:'EB Garamond',serif; font-size:2rem; margin-bottom:20px;" data-translate="overlay.title">🔒 EARLY ACCESS</h2>
+    <p style="color:#666; margin-bottom:30px;" data-translate="overlay.subtitle">Introduce la contraseña para ver los productos exclusivos</p>
+    <input type="password" id="ea-password" data-translate-placeholder="overlay.placeholder" placeholder="Contraseña" style="padding:12px 20px; border:2px solid #ddd; border-radius:10px; font-size:1rem; width:100%; max-width:300px; margin-bottom:15px;">
+    <br>
+    <button onclick="checkPassword()" style="background:#0d0d0a; color:white; padding:12px 40px; border:none; border-radius:10px; font-weight:bold; cursor:pointer; font-size:1rem; transition:all 0.3s;" data-translate="overlay.button">Entrar</button>
+    <p id="error-msg" style="color:red; margin-top:15px; display:none;" data-translate="overlay.error">Contraseña incorrecta</p>
+  </div>
+</div>
+
+<script>
+const password = "lamphostfam";
+
+// Mostrar overlay solo cuando se intenta ver productos
+window.addEventListener('DOMContentLoaded', function() {
+  const productSection = document.getElementById('productos');
+  const overlay = document.getElementById('early-access-overlay');
+  
+  // Observar cuando el usuario scrollea a productos
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !sessionStorage.getItem('ea-unlocked')) {
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  observer.observe(productSection);
+  
+  // También mostrar si hace click en "Ver productos"
+  document.querySelectorAll('a[href="#productos"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (!sessionStorage.getItem('ea-unlocked')) {
+        e.preventDefault();
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+});
+
+function checkPassword() {
+  const input = document.getElementById('ea-password').value;
+  const errorMsg = document.getElementById('error-msg');
+  
+  if(input === password) {
+    sessionStorage.setItem('ea-unlocked', 'true');
+    document.getElementById('early-access-overlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+  } else {
+    errorMsg.style.display = 'block';
+    setTimeout(() => errorMsg.style.display = 'none', 3000);
+  }
+}
+</script>
+</section>
+
+
+  <!-- PRODUCTOS -->
+<section id="productos" class="py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-12" data-translate="productos.title">EARLY ACCESS ESSENTIAL HOODIES</h2>
+
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      
+      <!-- PRODUCTO 1 -->
+      <div class="text-center product-card" data-id="p1">
+         <div class="carousel relative mx-auto rounded-xl overflow-hidden shadow w-full max-w-md">
+  <div class="carousel-images flex transition-transform duration-300">
+    <img src="images/FOTODELANTE.png" class="w-full object-cover">
+    <img src="images/FOTOESPALDA.png" class="w-full object-cover">
+    <img src="images/FOTODETALLE.png" class="w-full object-cover">
+  </div>
+     <!-- Botón izquierda -->
+  <button class="carousel-prev absolute top-1/2 left-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ‹
+  </button>
+
+  <!-- Botón derecha -->
+  <button class="carousel-next absolute top-1/2 right-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ›
+  </button>
+</div>
+
+        <div id='product-component-1763139880339'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: '8bmbbv-05.myshopify.com',
+      storefrontAccessToken: '4e8eb6e301111ac41a265c962238480a',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '15446125281654',
+        node: document.getElementById('product-component-1763139880339'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      },
+      "title": {
+        "font-family": "Montserrat, sans-serif"
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "price": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "compareAt": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "unitPrice": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "title": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "bold",
+        "font-size": "26px",
+        "color": "#4c4c4c"
+      },
+      "price": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "18px",
+        "color": "#4c4c4c"
+      },
+      "compareAt": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "unitPrice": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ],
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {
+    "styles": {
+      "label": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "select": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Montserrat, sans-serif",
+        "background-color": "#0d0d0a",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        ":focus": {
+          "background-color": "#161611"
+        }
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  }
+},
+      });
+    });
+  }
+})();
+
+/* === apagar buy button === */
+.shopify-buy-button {
+  display: none !important;
+}
+
+</script>
+      </div>
+
+      <!-- PRODUCTO 2 -->
+      <div class="text-center product-card" data-id="p2">
+        <div class="carousel relative mx-auto rounded-xl overflow-hidden shadow w-full max-w-md">
+  <div class="carousel-images flex transition-transform duration-300">
+    <img src="images/azul-fotos-producto.png" class="w-full object-cover">
+    <img src="images/azul-foto-detras.png" class="w-full object-cover">
+    <img src="images/azulFOTODETALLE.png" class="w-full object-cover">
+  </div>
+
+  <!-- Botón izquierda -->
+  <button class="carousel-prev absolute top-1/2 left-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ‹
+  </button>
+
+  <!-- Botón derecha -->
+  <button class="carousel-next absolute top-1/2 right-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ›
+  </button>
+</div>
+
+        
+       <div id='product-component-1763484763916'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: '8bmbbv-05.myshopify.com',
+      storefrontAccessToken: '4e8eb6e301111ac41a265c962238480a',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '15450626818422',
+        node: document.getElementById('product-component-1763484763916'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      },
+      "title": {
+        "font-family": "Montserrat, sans-serif"
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "price": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "compareAt": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "unitPrice": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "title": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "bold",
+        "font-size": "26px",
+        "color": "#4c4c4c"
+      },
+      "price": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "18px",
+        "color": "#4c4c4c"
+      },
+      "compareAt": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "unitPrice": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ],
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {
+    "styles": {
+      "label": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "select": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Montserrat, sans-serif",
+        "background-color": "#0d0d0a",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        ":focus": {
+          "background-color": "#161611"
+        }
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  }
+},
+      });
+    });
+  }
+})();
+/* === apagar buy button === */
+.shopify-buy-button {
+  display: none !important;
+}
+/*]]>*/
+</script>
+      </div>
+
+      <!-- PRODUCTO 3 -->
+      <div class="text-center product-card" data-id="p3">
+          <div class="carousel relative mx-auto rounded-xl overflow-hidden shadow w-full max-w-md">
+  <div class="carousel-images flex transition-transform duration-300">
+    <img src="images/BFOTODELANTE.png" class="w-full object-cover">
+    <img src="images/BFOTOESPALDA.png" class="w-full object-cover">
+    <img src="images/BFOTODETALLE.png" class="w-full object-cover">
+  </div>
+
+  <!-- Botón izquierda -->
+  <button class="carousel-prev absolute top-1/2 left-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ‹
+  </button>
+
+  <!-- Botón derecha -->
+  <button class="carousel-next absolute top-1/2 right-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ›
+  </button>
+</div>
+
+        <div id='product-component-1763487155788'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: '8bmbbv-05.myshopify.com',
+      storefrontAccessToken: '4e8eb6e301111ac41a265c962238480a',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '15450732986742',
+        node: document.getElementById('product-component-1763487155788'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      },
+      "title": {
+        "font-family": "Montserrat, sans-serif"
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "price": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "compareAt": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "unitPrice": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "title": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "bold",
+        "font-size": "26px",
+        "color": "#4c4c4c"
+      },
+      "price": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "18px",
+        "color": "#4c4c4c"
+      },
+      "compareAt": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "unitPrice": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ],
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {
+    "styles": {
+      "label": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "select": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Montserrat, sans-serif",
+        "background-color": "#0d0d0a",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        ":focus": {
+          "background-color": "#161611"
+        }
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  }
+},
+      });
+    });
+  }
+})();
+/*]]>*/
+/* === apagar buy button === */
+.shopify-buy-button {
+  display: none !important;
+}
+</script>
+      </div>
+
+      <!-- PRODUCTO 4 -->
+      <div class="text-center product-card" data-id="p4">
+           <div class="carousel relative mx-auto rounded-xl overflow-hidden shadow w-full max-w-md">
+  <div class="carousel-images flex transition-transform duration-300">
+    <img src="images/GFOTODELANTE.png" class="w-full object-cover">
+    <img src="images/GFOTODETRAS.png" class="w-full object-cover">
+    <img src="images/GFOTODETALLE.png" class="w-full object-cover">
+  </div>
+
+  <!-- Botón izquierda -->
+  <button class="carousel-prev absolute top-1/2 left-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ‹
+  </button>
+
+  <!-- Botón derecha -->
+  <button class="carousel-next absolute top-1/2 right-2 -translate-y-1/2 text-white bg-black bg-opacity-40 px-3 py-1 rounded-full text-xl">
+    ›
+  </button>
+</div>
+
+        <div id='product-component-1763485794244'></div>
+<script type="text/javascript">
+/*<![CDATA[*/
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: '8bmbbv-05.myshopify.com',
+      storefrontAccessToken: '4e8eb6e301111ac41a265c962238480a',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '15450679607670',
+        node: document.getElementById('product-component-1763485794244'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px"
+        }
+      },
+      "title": {
+        "font-family": "Montserrat, sans-serif"
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "price": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "compareAt": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "unitPrice": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px",
+        "padding-left": "67px",
+        "padding-right": "67px"
+      },
+      "title": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "bold",
+        "font-size": "26px",
+        "color": "#4c4c4c"
+      },
+      "price": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "18px",
+        "color": "#4c4c4c"
+      },
+      "compareAt": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      },
+      "unitPrice": {
+        "font-family": "Helvetica Neue, sans-serif",
+        "font-weight": "normal",
+        "font-size": "15.299999999999999px",
+        "color": "#4c4c4c"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ],
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {
+    "styles": {
+      "label": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      },
+      "select": {
+        "font-family": "Montserrat, sans-serif",
+        "font-weight": "bold"
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Montserrat, sans-serif",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        "background-color": "#0d0d0a",
+        ":focus": {
+          "background-color": "#161611"
+        },
+        "border-radius": "15px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Montserrat, sans-serif",
+        "background-color": "#0d0d0a",
+        ":hover": {
+          "background-color": "#161611"
+        },
+        ":focus": {
+          "background-color": "#161611"
+        }
+      }
+    },
+    "googleFonts": [
+      "Montserrat"
+    ]
+  }
+},
+      });
+    });
+  }
+})();
+/*]]>*/
+/* === apagar buy button === */
+.shopify-buy-button {
+  display: none !important;
+}
+</script>
+      </div>
+
+
+
+    </div>
+  </div>
+
+<!-- Formulario Reserva Early Access -->
+<div id="ea-form" style="max-width:400px; margin:50px auto; display:flex; flex-direction:column; align-items:center;">
+  <h3 data-translate="form.title">RESERVA TU SUDADERA EARLY ACCES</h3>
+  <p data-translate="form.price">Precio exclusivo: 50€ (descuento lanzamiento)</p>
+  <form id="earlyAccessForm">
+    <label data-translate="form.email">Correo:</label><br>
+    <input type="email" id="ea-email" required><br><br>
+
+    <label data-translate="form.age">Edad:</label><br>
+    <input type="number" id="ea-age" required min="12"><br><br>
+
+    <label data-translate="form.address">Dirección:</label><br>
+    <input type="text" id="ea-address" required><br><br>
+
+    <label data-translate="form.color">Color:</label><br>
+    <select id="ea-color" required>
+   <option value="" data-translate="form.select">Selecciona</option>
+   <option value="Blue">Blue</option>
+   <option value="Green">Green</option>
+   <option value="Beige">Beige</option>
+   <option value="Grey">Dark Grey</option>
+ </select><br><br>
+
+
+    <label data-translate="form.size">Talla:</label><br>
+    <select id="ea-size" required>
+      <option value="" data-translate="form.select">Selecciona</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select><br><br>
+
+    <button type="submit" data-translate="form.button">Reservar</button>
+  </form>
+  <div id="ea-confirmation" style="margin-top:20px;color:green;font-weight:bold;display:none;"></div>
+</div>
+
+<script>
+  // STOCK MÁXIMO POR TALLA/COLOR
+  const maxStock = {
+    "Blue": { "M":10, "L":8, "XL":5, "XXL":3 },
+    "Green": { "M":10, "L":8, "XL":5, "XXL":3 },
+    "Beige": { "M":10, "L":8, "XL":5, "XXL":3 },
+    "Grey": { "M":10, "L":8, "XL":5, "XXL":3 }
+  };
+
+  // Función para deshabilitar opciones agotadas visualmente
+  function updateStockOptions() {
+    const colorSelect = document.getElementById('ea-color');
+    const sizeSelect = document.getElementById('ea-size');
+
+    for(let i=1; i<colorSelect.options.length; i++){
+      const color = colorSelect.options[i].value;
+      colorSelect.options[i].disabled = Object.values(maxStock[color]).every(s => s <=0);
+    }
+
+    for(let i=1; i<sizeSelect.options.length; i++){
+      const size = sizeSelect.options[i].value;
+      let color = colorSelect.value;
+      if(color){
+        sizeSelect.options[i].disabled = maxStock[color][size] <= 0;
+      } else {
+        sizeSelect.options[i].disabled = false;
+      }
+    }
+  }
+
+  document.getElementById('ea-color').addEventListener('change', updateStockOptions);
+  document.getElementById('ea-size').addEventListener('change', updateStockOptions);
+
+  // ENVÍO DE FORMULARIO
+  document.getElementById('earlyAccessForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const email = document.getElementById('ea-email').value;
+    const age = document.getElementById('ea-age').value;
+    const address = document.getElementById('ea-address').value;
+    const color = document.getElementById('ea-color').value;
+    const size = document.getElementById('ea-size').value;
+
+    // Obtener idioma actual
+    const currentLang = localStorage.getItem('lamphost-language') || 'es';
+    const dict = translations[currentLang];
+
+    if(!email || !age || !address || !color || !size){
+      alert(dict['form.complete'] || "Completa todos los campos");
+      return;
+    }
+
+    if(maxStock[color][size] <= 0){
+      alert(dict['form.error'] || "Lo sentimos, esta combinación está agotada");
+      return;
+    }
+
+    maxStock[color][size]--; // resta 1 al stock local
+    updateStockOptions();    // actualizar visualmente
+
+    // Envío de datos a Google Forms
+    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf5EO9A1mLpUgBxSkzY6WCRTnXjqO5p0Q3sT-vWuYqKVlQE-w/formResponse";
+    const data = new FormData();
+    data.append("entry.916491310", email);
+    data.append("entry.1484150538", age);
+    data.append("entry.1293148442", address);
+    data.append("entry.901681363", color);
+    data.append("entry.489968571", size);
+
+    fetch(formUrl, { method: "POST", body: data, mode: "no-cors" })
+      .then(() => {
+        const confirmationDiv = document.getElementById('ea-confirmation');
+        confirmationDiv.style.display = 'block';
+        confirmationDiv.textContent = dict['form.confirmation'] || "¡Reserva confirmada!";
+        document.getElementById('earlyAccessForm').reset();
+      })
+      .catch(() => {
+        alert("Error al enviar la reserva. Intenta nuevamente.");
+      });
+  });
+
+  // Inicializa opciones según stock
+  updateStockOptions();
+</script>
+</section>
+
+
+<!-- SOBRE LAMPHOST -->
+<section class="py-20 bg-gray-50 px-6">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h3 class="text-3xl font-bold mb-4" data-translate="about.title">ABOUT LAMPHOST</h3>
+      
+      <!-- Párrafos en español -->
+      <div class="about-text-es">
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Lamphost nació hace diez años como un proyecto de skate: una pasión clara, un trabajo de fin de grado y un grupo de amigos con más ganas que recursos. Ese fue el punto de partida.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Tras años de altibajos, Charly —fundador del proyecto— descubrió la alta montaña. Las temporadas en la nieve de Sierra Nevada (Granada, España) cambiaron su perspectiva y abrieron una nueva vía para la marca. Con otra mentalidad, un enfoque más maduro y un equipo renovado, la farola de Lamphost volvió a encenderse.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Hoy Lamphost se encuentra en Innsbruck, una ciudad rodeada por los Alpes austriacos. El traslado no es casual: buscamos elevar la calidad en todo lo que hacemos, desde los productos hasta el contenido. Sin más recursos que la convicción y el trabajo, la marca entra en su segunda etapa con un propósito claro: crecer.
+        </p>
+      </div>
+
+      <!-- Párrafos en inglés -->
+      <div class="about-text-en" style="display:none;">
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Lamphost was born ten years ago as a skateboarding project: a clear passion, a final degree project, and a group of friends with more drive than resources. That was the starting point.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          After years of ups and downs, Charly—the project's founder—discovered high mountain sports. The seasons in the snow of Sierra Nevada (Granada, Spain) changed his perspective and opened a new path for the brand. With a different mindset, a more mature approach, and a renewed team, Lamphost's light was lit once again.
+        </p>
+        <p class="text-gray-700 leading-relaxed">
+          Today, Lamphost is based in Innsbruck, a city surrounded by the Austrian Alps. The move is no coincidence: we seek to elevate quality in everything we do, from products to content. With no more than dedication and hard work, the brand enters its second phase with a clear goal: to grow and do it right.
+        </p>
+      </div>
+    </div>
+    
+    <img src="images/tomi.png" alt="Sobre Lamphost" class="rounded-2xl shadow-lg">
+  </div>
+</section>
+  <!-- CTA FINAL -->
+  <section class="text-center py-20">
+    <h3 class="text-3xl font-bold mb-6" data-translate="cta.title">DESCUBRE LA COLECCIÓN LAMPHOST</h3>
+    <a href="#productos" class="mt-6 inline-block bg-[#1C1C1C] text-white px-6 py-3 rounded-full font-medium hover:bg-black transition" data-translate="cta.button">Ver productos</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contacto" class="bg-gray-900 text-white py-8 text-center">
+    <p data-translate="footer.follow">Síguenos en redes sociales</p>
+    <div class="flex justify-center space-x-6 mt-4">
+      <a href="https://www.instagram.com/lamphost" target="_blank" class="hover:text-yellow-500">Instagram</a>
+      <a href="https://www.tiktok.com/@lamphost" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-500">TikTok</a>
+    </div>
+    <p class="mt-6 text-gray-400" data-translate="footer.contact">Contacto: lamphostcollective@gmail.com</p>
+    <p class="mt-2 text-gray-500" data-translate="footer.rights">© 2025 Lamphost. Todos los derechos reservados.</p>
+  </footer>
+
+<script>
+// ============================================
+// SISTEMA DE TRADUCCIÓN MEJORADO - LAMPHOST
+// ============================================
+
+const translations = {
+  es: {
+    // Header & Nav
+    "nav.inicio": "Inicio",
+    "nav.productos": "Productos",
+    "nav.contacto": "Contacto",
+    
+    // Hero
+    "hero.title": "RIDE THE LIGHT",
+    
+    // Overlay Early Access
+    "overlay.title": "🔒 EARLY ACCESS",
+    "overlay.subtitle": "Introduce la contraseña para ver los productos exclusivos",
+    "overlay.placeholder": "Contraseña",
+    "overlay.button": "Entrar",
+    "overlay.error": "Contraseña incorrecta",
+    
+    // Productos
+    "productos.title": "EARLY ACCESS ESSENTIAL HOODIES",
+    
+    // Formulario
+    "form.title": "RESERVA TU SUDADERA EARLY ACCESS",
+    "form.price": "Precio exclusivo: 50€ (descuento lanzamiento)",
+    "form.email": "Correo:",
+    "form.age": "Edad:",
+    "form.address": "Dirección:",
+    "form.color": "Color:",
+    "form.size": "Talla:",
+    "form.select": "Selecciona",
+    "form.button": "Reservar",
+    "form.confirmation": "¡Reserva confirmada! Recibirás un correo con tu descuento al lanzar la web.",
+    "form.error": "Lo sentimos, esta combinación está agotada",
+    "form.complete": "Completa todos los campos",
+    
+    // About
+    "about.title": "ABOUT LAMPHOST",
+    "about.text": "Lamphost nació hace 10 años como un proyecto de skate. Una pasión clara, un trabajo de fin de grado y un grupo de amigos dispuestos a soñar, fueron los ingredientes necesarios para la creación de esta marca. Después de años de altibajos, Charly, el principal fundador de la misma, empezó a descubrir la alta montaña y a interesarse por las posibilidades que ofrece. Después de varias temporadas aprendiendo y disfrutando de la nieve de Sierra Nevada (Granada, España), una nueva idea, un nuevo enfoque y un nuevo equipo vuelven a iluminar la farola de Lamphost. Sin mucho más que ilusión y ganas, ahora Lamphost se encuentra en una ciudad rodeada de las montañas de los Alpes austriacos, Innsbruck. Este cambio se hace para poder conseguir un aumento de calidad en todos los aspectos, tanto en los productos, como en nuestro contenido.",
+    
+    // CTA
+    "cta.title": "DESCUBRE LA COLECCIÓN LAMPHOST",
+    "cta.button": "Ver productos",
+    
+    // Footer
+    "footer.follow": "Síguenos en redes sociales",
+    "footer.contact": "Contacto: lamphostcollective@gmail.com",
+    "footer.rights": "© 2025 Lamphost. Todos los derechos reservados."
+  },
+  
+  en: {
+    // Header & Nav
+    "nav.inicio": "Home",
+    "nav.productos": "Products",
+    "nav.contacto": "Contact",
+    
+    // Hero
+    "hero.title": "RIDE THE LIGHT",
+    
+    // Overlay Early Access
+    "overlay.title": "🔒 EARLY ACCESS",
+    "overlay.subtitle": "Enter password to view exclusive products",
+    "overlay.placeholder": "Password",
+    "overlay.button": "Enter",
+    "overlay.error": "Incorrect password",
+    
+    // Productos
+    "productos.title": "EARLY ACCESS ESSENTIAL HOODIES",
+    
+    // Formulario
+    "form.title": "RESERVE YOUR EARLY ACCESS HOODIE",
+    "form.price": "Exclusive price: €50 (launch discount)",
+    "form.email": "Email:",
+    "form.age": "Age:",
+    "form.address": "Address:",
+    "form.color": "Color:",
+    "form.size": "Size:",
+    "form.select": "Select",
+    "form.button": "Reserve",
+    "form.confirmation": "Reservation confirmed! You'll receive an email with your discount when we launch.",
+    "form.error": "Sorry, this combination is sold out",
+    "form.complete": "Complete all fields",
+    
+    // About
+    "about.title": "ABOUT LAMPHOST",
+    "about.text": "At Lamphost we believe in light as a form of expression. Our pieces combine minimalist design with quality materials to transform any space.",
+    
+    // CTA
+    "cta.title": "DISCOVER THE LAMPHOST COLLECTION",
+    "cta.button": "View products",
+    
+    // Footer
+    "footer.follow": "Follow us on social media",
+    "footer.contact": "Contact: lamphostcollective@gmail.com",
+    "footer.rights": "© 2025 Lamphost. All rights reserved."
+  }
+};
+
+// Guardar y cargar idioma preferido
+function saveLanguage(lang) {
+  localStorage.setItem('lamphost-language', lang);
+}
+
+function loadLanguage() {
+  return localStorage.getItem('lamphost-language') || 'es';
+}
+
+// Aplicar traducción
+function translatePage(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+  
+  // Traducir todos los elementos con data-translate
+  document.querySelectorAll('[data-translate]').forEach(el => {
+    const key = el.getAttribute('data-translate');
+    if (dict[key]) {
+      el.textContent = dict[key];
+    }
+  });
+  
+  // Traducir placeholders
+  document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-translate-placeholder');
+    if (dict[key]) {
+      el.placeholder = dict[key];
+    }
+  });
+  
+  saveLanguage(lang);
+  translateAboutSection(lang);
+}
+
+// Selector de idioma
+const langSelect = document.getElementById('language-switcher');
+if (langSelect) {
+  // Cargar idioma guardado al inicio
+  const savedLang = loadLanguage();
+  langSelect.value = savedLang;
+  translatePage(savedLang);
+  
+  // Cambiar idioma
+  langSelect.addEventListener('change', e => {
+    translatePage(e.target.value);
+  });
+}
+// Traducir sección About
+function translateAboutSection(lang) {
+  if (lang === 'es') {
+    document.querySelector('.about-text-es').style.display = 'block';
+    document.querySelector('.about-text-en').style.display = 'none';
+  } else {
+    document.querySelector('.about-text-es').style.display = 'none';
+    document.querySelector('.about-text-en').style.display = 'block';
+  }
+}
+</script>
+<script>
+document.querySelectorAll(".carousel").forEach(carousel => {
+  const images = carousel.querySelector(".carousel-images");
+  const total = images.children.length;
+  let index = 0;
+
+  const update = () => {
+    images.style.transform = `translateX(-${index * 100}%)`;
+  };
+
+  carousel.querySelector(".carousel-prev").addEventListener("click", () => {
+    index = (index - 1 + total) % total;
+    update();
+  });
+
+  carousel.querySelector(".carousel-next").addEventListener("click", () => {
+    index = (index + 1) % total;
+    update();
+  });
+});
+</script>
+
+</body>
+
+<script type="text/javascript">
